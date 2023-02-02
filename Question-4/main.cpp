@@ -14,6 +14,7 @@ public:
     Strings(std::string s)
     {
         str = s;
+        
     }
     void getData(std::string s)
     {
