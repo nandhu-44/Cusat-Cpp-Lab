@@ -37,13 +37,11 @@ public:
 
     void concatenate(const Strings &s1, const Strings &s2)
     {
-        // Strings
         len = s1.len + s2.len;
         delete str;
         str = new char[len + 1];
         strcpy(str, s1.str);
         strcat(str, s2.str);
-        // return s3;
     }
 
     bool compare(const Strings &s2) const
@@ -90,14 +88,10 @@ int main()
             std::cout << "Enter string 1: ";
             std::cin >> str1;
             s1.getData(str1);
-            std::cout << "The contents of s1 >";
-            s1.display();
             std::cout << std::endl;
             std::cout << "Enter string 2: ";
             std::cin >> str2;
             s2.getData(str2);
-            std::cout << "The contents of s2 >";
-            s2.display();
             std::cout << std::endl;
             s3.concatenate(s1, s2);
             std::cout << "Concatenated string: ";
