@@ -112,7 +112,7 @@ int main()
             break;
         default:
             std::cout << std::endl;
-            std::cout << "Invalid choice. Please try again." << std::endl;
+            std::cout << "Please provide a valid choice!" << std::endl;
             std::cout << std::endl;
             break;
         }

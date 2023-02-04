@@ -207,7 +207,7 @@ int main()
             continueLoop = false;
             break;
         default:
-            std::cout << "Invalid choice" << std::endl;
+            std::cout << "Please provide a valid choice!" << std::endl;
             break;
         }
         std::cout << std::endl;
