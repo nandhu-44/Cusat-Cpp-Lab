@@ -34,7 +34,7 @@ void Bank::new_account()
     customer_name = cust_name;
     std::cout << "Enter your account type (S for Savings, F for fixed deposit account): ";
     std::cin >> acc_type;
-    while (acc_type != "S" && acc_type != "F")
+    while (acc_type != "S" && acc_type != "F" && acc_type != "s" && acc_type != "f")
     {
         if (error_count < 2)
         {
@@ -133,7 +133,8 @@ int main()
     {
         int choice;
         std::cout << std::endl;
-        std::cout << "_____Main Menu_____ " << std::endl;
+        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "-----Main Menu----" << std::endl;
         std::cout << "1. Deposit" << std::endl;
         std::cout << "2. Withdraw" << std::endl;
         std::cout << "3. Balance Enquiry" << std::endl;
@@ -141,6 +142,7 @@ int main()
         std::cout << "5. Exit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << "------------------------------------------------------------" << std::endl;
         std::cout << std::endl;
         int acc_no;
         float amount;

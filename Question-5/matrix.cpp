@@ -85,13 +85,14 @@ int main()
     std::cout << "Enter number of columns: ";
     std::cin >> col;
     Matrix m(row, col);
+    std::cout << std::endl;
     bool continueLoop = true;
     while (continueLoop)
     {
         int choice;
         int r, c, val;
-        std::cout << std::endl;
-        std::cout << "_____Main Menu_____ " << std::endl;
+        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "-----Main Menu-----" << std::endl;
         std::cout << "1. Set Data" << std::endl;
         std::cout << "2. Print Matrix" << std::endl;
         std::cout << "3. Set Element" << std::endl;
@@ -100,6 +101,7 @@ int main()
         std::cout << "6. Exit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << "------------------------------------------------------------" << std::endl;
         std::cout << std::endl;
         switch (choice)
         {
@@ -114,27 +116,40 @@ int main()
             std::cin >> r;
             std::cout << "Enter column: ";
             std::cin >> c;
-            std::cout << "Enter value: ";
-            std::cin >> val;
-            m.setElement(r - 1, c - 1, val);
+            if (r > row || c > col)
+            {
+                std::cout << "Please provide valid dimensions!!" << std::endl;
+            }
+            else
+            {
+                std::cout << "Enter value: ";
+                std::cin >> val;
+                m.setElement(r - 1, c - 1, val);
+            }
             break;
         case 4:
             std::cout << "Enter row: ";
             std::cin >> r;
             std::cout << "Enter column: ";
             std::cin >> c;
-            std::cout << "Element at [" << r << "," << c << "] is " << m.getElement(r - 1, c - 1) << std::endl;
+            if (r > row || c > col)
+                std::cout << "Please provide valid dimensions!!" << std::endl;
+            else
+            {
+                std::cout << "Element at [" << r << "," << c << "] is " << m.getElement(r - 1, c - 1) << std::endl;
+            }
             break;
         case 5:
             std::cout << "Dimensions of matrix are " << std::get<0>(m.getDimensions()) << "x" << std::get<1>(m.getDimensions()) << std::endl;
             break;
         case 6:
-            std::cout << "Thsnk you for using the program." << std::endl;
+            std::cout << "Thank you for using the program." << std::endl;
             continueLoop = false;
             break;
         default:
-            std::cout << "Invalid choice" << std::endl;
+            std::cout << "Please provide a valid choice!" << std::endl;
             break;
         }
+        std::cout << std::endl;
     }
 }

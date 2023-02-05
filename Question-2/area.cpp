@@ -44,7 +44,8 @@ int main()
     {
         int choice;
         std::cout << std::endl;
-        std::cout << "_____Main Menu_____ " << std::endl;
+        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "-----Main Menu-----" << std::endl;
         std::cout << "1. Area of Square" << std::endl;
         std::cout << "2. Area of Rectangle" << std::endl;
         std::cout << "3. Area of Circle" << std::endl;
@@ -53,6 +54,7 @@ int main()
         std::cout << "6. Exit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << "------------------------------------------------------------" << std::endl;
         switch (choice)
         {
         case 1:

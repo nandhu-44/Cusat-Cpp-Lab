@@ -13,7 +13,7 @@ private:
 
 public:
     void input(void);
-    void calcGrade(int, int, int);
+    std::string calcGrade(int, int, int);
     void display(void);
 };
 int checkRange(int);
@@ -46,7 +46,7 @@ int checkRange(int marks)
     {
         if (marks < 0 || marks > 100)
         {
-            std::cout << "Enter the marks in the range of 0 to 100: ";
+            std::cout << "Enter the marks in the range from 0 to 100: ";
             std::cin >> marks;
             errorCount++;
         }
@@ -56,48 +56,49 @@ int checkRange(int marks)
         }
     }
     std::cout << "You have entered the marks in the wrong range for 5 times. Please try again later." << std::endl;
+    std::cout << std::endl;
     exit(1);
 }
 
-void Student::calcGrade(int a, int b, int c)
+std::string Student::calcGrade(int a, int b, int c)
 {
     int total = a + b + c;
     float percentage = total / 3;
     if (percentage >= 90)
     {
-        std::cout << "The grade of the student is A" << std::endl;
+        return "A";
     }
     else if (percentage >= 80)
     {
-        std::cout << "The grade of the student is B" << std::endl;
+        return "B";
     }
     else if (percentage >= 70)
     {
-        std::cout << "The grade of the student is C" << std::endl;
+        return "C";
     }
     else if (percentage >= 60)
     {
-        std::cout << "The grade of the student is D" << std::endl;
+        return "D";
     }
     else if (percentage >= 40)
     {
-        std::cout << "The grade of the student is E" << std::endl;
+        return "E";
     }
     else
     {
-        std::cout << "The grade of the student is F" << std::endl;
+        return "F";
     }
 }
 
 void Student::display(void)
 {
     std::cout << std::endl;
-    std::cout << "The name of student is " << name << std::endl;
-    std::cout << "The roll number of the student is " << rollNo << std::endl;
-    std::cout << "The marks in C++ is " << marksCpp << std::endl;
-    std::cout << "The marks in Python is " << marksPython << std::endl;
-    std::cout << "The marks in Java is " << marksJava << std::endl;
-    calcGrade(marksCpp, marksPython, marksJava);
+    std::cout << " Name            : " << name << std::endl;
+    std::cout << " Roll No         : " << rollNo << std::endl;
+    std::cout << " Marks in C++    : " << marksCpp << std::endl;
+    std::cout << " Marks in Python : " << marksPython << std::endl;
+    std::cout << " Marks in Java   : " << marksJava << std::endl;
+    std::cout << " Grade           : " << calcGrade(marksCpp, marksPython, marksJava) << std::endl;
     std::cout << std::endl;
 }
 
@@ -110,7 +111,7 @@ int main()
     Student student[studentCount];
     for (int i = 0; i < studentCount; i++)
     {
-        std::cout << "Enter the details of student " << i + 1 << std::endl;
+        std::cout << "-----Student " << i + 1 << "-----" << std::endl;
         student[i].input();
         std::cout << std::endl;
     }
@@ -118,17 +119,20 @@ int main()
     while (continueLoop)
     {
         int choice;
-        std::cout << "_____Main Menu_____ " << std::endl;
+        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "-----Main -----" << std::endl;
         std::cout << "1. Display the details of all the students" << std::endl;
         std::cout << "2. Display the details of a particular student" << std::endl;
         std::cout << "3. Exit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << "------------------------------------------------------------" << std::endl;
         switch (choice)
         {
         case 1:
             for (int i = 0; i < studentCount; i++)
             {
+                std::cout << "-----Student " << i + 1 << "-----" << std::endl;
                 student[i].display();
             }
             break;

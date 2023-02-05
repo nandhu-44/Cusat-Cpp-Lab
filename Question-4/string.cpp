@@ -63,13 +63,13 @@ public:
 int main()
 {
     Strings s1, s2, s3;
-
-    while (true)
+    bool continueLoop = true;
+    while (continueLoop)
     {
         int choice;
         std::cout << std::endl;
         std::cout << "------------------------------------------------------------" << std::endl;
-        std::cout << "____Main Menu____" << std::endl;
+        std::cout << "-----Main Menu-----" << std::endl;
         std::cout << "1. Concatenate" << std::endl;
         std::cout << "2. Compare" << std::endl;
         std::cout << "3. Get Length" << std::endl;
@@ -77,7 +77,6 @@ int main()
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cout << "------------------------------------------------------------" << std::endl;
-
         std::cout << std::endl;
         switch (choice)
         {
@@ -136,7 +135,8 @@ int main()
         {
             std::cout << "Thank you for using the program." << std::endl;
             std::cout << std::endl;
-            exit(0);
+            continueLoop = false;
+            break;
         }
         default:
         {
