@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 
 class Student
 {
@@ -120,7 +119,7 @@ int main()
     {
         int choice;
         std::cout << "------------------------------------------------------------" << std::endl;
-        std::cout << "-----Main -----" << std::endl;
+        std::cout << "-----Main Menu-----" << std::endl;
         std::cout << "1. Display the details of all the students" << std::endl;
         std::cout << "2. Display the details of a particular student" << std::endl;
         std::cout << "3. Exit" << std::endl;

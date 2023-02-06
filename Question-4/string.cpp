@@ -8,57 +8,68 @@ private:
     int len;
 
 public:
-    Strings()
-    {
-        len = 0;
-        str = new char[len + 1];
-        // str[0] = '\0';
-    }
-
-    Strings(const char *s)
-    {
-        len = strlen(s);
-        str = new char[len + 1];
-        strcpy(str, s);
-    }
-
-    void display()
-    {
-        std::cout << str;
-    }
-
-    void getData(const char *s)
-    {
-        len = strlen(s);
-        delete str;
-        str = new char[len + 1];
-        strcpy(str, s);
-    }
-
-    void concatenate(const Strings &s1, const Strings &s2)
-    {
-        len = s1.len + s2.len;
-        delete str;
-        str = new char[len + 1];
-        strcpy(str, s1.str);
-        strcat(str, s2.str);
-    }
-
-    bool compare(const Strings &s2) const
-    {
-        return strcmp(str, s2.str) == 0;
-    }
-
-    int getLength() const
-    {
-        return len;
-    }
-
-    ~Strings()
-    {
-        delete str;
-    }
+    Strings();
+    Strings(const char *s);
+    void display();
+    void getData(const char *s);
+    void concatenate(const Strings &s1, const Strings &s2);
+    bool compare(const Strings &s2) const;
+    int getLength();
+    ~Strings();
 };
+
+Strings::Strings()
+{
+    len = 0;
+    str = new char[len + 1];
+}
+
+Strings::Strings(const char *s)
+{
+    len = strlen(s);
+    str = new char[len + 1];
+    strcpy(str, s);
+}
+
+void Strings::display()
+{
+    std::cout << str;
+}
+
+void Strings::getData(const char *s)
+{
+    len = strlen(s);
+    delete str;
+    str = new char[len + 1];
+    strcpy(str, s);
+}
+
+void Strings::concatenate(const Strings &s1, const Strings &s2)
+{
+    len = s1.len + s2.len;
+    delete str;
+    int i = s2.str[0] == ' ' ? 1 : 2;
+    str = new char[len + i];
+    strcpy(str, s1.str);
+    if (i > 1)
+        strcat(str, " ");
+    strcat(str, s2.str);
+}
+
+bool Strings::compare(const Strings &s2) const
+{
+    return strcmp(str, s2.str) == 0;
+}
+
+int Strings::getLength()
+{
+    return len;
+}
+
+Strings::~Strings()
+{
+    delete str;
+}
 
 int main()
 {
