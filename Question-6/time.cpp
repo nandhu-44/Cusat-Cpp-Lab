@@ -38,7 +38,7 @@ void Time::setTime(int h, int m, int s)
 
 void Time::printTime(void)
 {
-    std::cout  << hours << "H " << minutes << "M " << seconds << "S " << std::endl;
+    std::cout << hours << "H " << minutes << "M " << seconds << "S " << std::endl;
 }
 
 Time operator+(const Time &t1, const Time &t2)
@@ -114,4 +114,5 @@ int main()
         }
         std::cout << std::endl;
     }
+    return 0;
 }
