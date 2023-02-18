@@ -29,7 +29,6 @@ public:
     Store();
     void setItem(Item);
     void addToCart(int, int);
-    Item getItem(int);
     void removeFromCart(int, int);
     void display(void);
     void showCart(void);
@@ -114,16 +113,35 @@ void Store::addToCart(int code, int quantity)
                 {
                     if (item[i].getQuantity() >= quantity)
                     {
-                        cart[itemCount] = item[i];
-                        cart[itemCount].setQuantity(quantity);
-                        itemCount++;
-                        int newQuantity = item[i].getQuantity() - quantity;
-                        item[i].setQuantity(newQuantity);
-                        break;
+                        bool itemFound = false;
+                        for (int j = 0; j < itemCount; j++)
+                        {
+                            if (cart[j].getCode() == code)
+                            {
+                                itemFound = true;
+                                cart[j].setQuantity(cart[j].getQuantity() + quantity);
+                                int newQuantity = item[i].getQuantity() - quantity;
+                                item[i].setQuantity(newQuantity);
+                                break;
+                            }
+                        }
+                        if (!itemFound)
+                        {
+                            cart[itemCount] = item[i];
+                            cart[itemCount].setQuantity(quantity);
+                            itemCount++;
+                            int newQuantity = item[i].getQuantity() - quantity;
+                            item[i].setQuantity(newQuantity);
+                            break;
+                        }
+                    }
+                    else if (item[i].getQuantity() == 0)
+                    {
+                        std::cout << "Item out of stock!" << std::endl;
                     }
                     else
                     {
-                        std::cout << "Item out of stock!" << std::endl;
+                        std::cout << "Not enough quantity in stock!" << std::endl;
                     }
                 }
             }
@@ -182,39 +200,37 @@ void Store::removeFromCart(int code, int quantity)
     }
 }
 
-Item Store::getItem(int code)
-{
-    for (int i = 0; i < count; i++)
-    {
-        if (item[i].getCode() == code)
-        {
-            return item[i];
-        }
-    }
-    return Item();
-}
-
 void Store::display(void)
 {
     std::cout << "------------------Store------------------" << std::endl;
-    std::cout << "Item Code\tName\tPrice\tQuantity" << std::endl;
+    std::cout << "Item Code\tName\t  Price\t  Quantity" << std::endl;
     for (int i = 0; i < count; i++)
     {
-        std::cout << item[i].getCode() << "\t\t" << item[i].getName() << "\t" << item[i].getPrice() << "\t" << item[i].getQuantity() << std::endl;
+        std::cout << "   " << item[i].getCode() << "\t\t"
+                  << item[i].getName() << "\t"
+                  << "   " << item[i].getPrice() << "\t"
+                  << "    " << item[i].getQuantity() << std::endl;
     }
 }
 
 void Store::showCart(void)
 {
-    std::cout << "------------------Cart------------------" << std::endl;
-    std::cout << "Item Code\tName\tPrice\t\tQuantity\tCost" << std::endl;
-    for (int i = 0; i < itemCount; i++)
+    if (itemCount == 0)
     {
-        std::cout << "  " << cart[i].getCode() << "\t\t"
-                  << " " << cart[i].getName() << "\t"
-                  << cart[i].getPrice() << "\t\t"
-                  << "  " << cart[i].getQuantity() << "\t\t"
-                  << " " << cart[i].getCost() << std::endl;
+        std::cout << "Your cart is empty!" << std::endl;
+    }
+    else
+    {
+        std::cout << "-------------------------------Cart-------------------------------" << std::endl;
+        std::cout << "Item Code\tName\t  Price\t\t  Quantity\t  Cost" << std::endl;
+        for (int i = 0; i < itemCount; i++)
+        {
+            std::cout << "   " << cart[i].getCode() << "\t\t"
+                      << cart[i].getName() << "\t"
+                      << "   " << cart[i].getPrice() << "\t\t"
+                      << "     " << cart[i].getQuantity() << "\t\t"
+                      << "  " << cart[i].getCost() << std::endl;
+        }
     }
 }
 
@@ -225,16 +241,16 @@ int Store::getCount(void)
 
 void Store::confirmPurchase(void)
 {
-    std::cout << "----------------------------Bill----------------------------" << std::endl;
-    std::cout << "Item Code\tName\tPrice\t\tQuantity\tCost" << std::endl;
+    std::cout << "-------------------------------Bill-------------------------------" << std::endl;
+    std::cout << "Item Code\tName\t  Price\t\t  Quantity\t  Cost" << std::endl;
     int total = 0;
     for (int i = 0; i < itemCount; i++)
     {
-        std::cout << "  " << cart[i].getCode() << "\t\t"
-                  << " " << cart[i].getName() << "\t"
-                  << cart[i].getPrice() << "\t\t"
-                  << "  " << cart[i].getQuantity() << "\t\t"
-                  << " " << cart[i].getCost() << std::endl;
+        std::cout << "    " << cart[i].getCode() << "\t\t"
+                  << cart[i].getName() << "\t"
+                  << "   " << cart[i].getPrice() << "\t\t"
+                  << "    " << cart[i].getQuantity() << "\t\t"
+                  << "   " << cart[i].getCost() << std::endl;
 
         total += cart[i].getCost();
     }
@@ -275,7 +291,7 @@ int main()
     while (continueLoop)
     {
         int choice;
-        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
         std::cout << "-----Main Menu-----" << std::endl;
         std::cout << "1. Display Store" << std::endl;
         std::cout << "2. Add to Cart" << std::endl;
@@ -286,7 +302,7 @@ int main()
         std::cout << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
-        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
         std::cout << std::endl;
         switch (choice)
         {
