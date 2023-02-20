@@ -73,20 +73,27 @@ void matrix_add(const Matrix &m1, const Matrix &m2)
 
 void matrix_mult(const Matrix &m1, const Matrix &m2)
 {
-    if (m1.row != m2.row || m1.col != m2.col)
+    if (m1.row != m2.col || m1.col != m2.row)
     {
         std::cout << "Matrix multiplication not possible!" << std::endl;
     }
-    Matrix m3(m1.row, m1.col);
-    for (int i = 0; i < m1.row; i++)
+    else
     {
-        for (int j = 0; j < m1.col; j++)
+        Matrix m3(m1.row, m2.col);
+        for (int i = 0; i < m1.row; i++)
         {
-            m3.mat[i][j] = m1.mat[i][j] * m2.mat[i][j];
+            for (int j = 0; j < m2.col; j++)
+            {
+                m3.mat[i][j] = 0;
+                for (int k = 0; k < m1.col; k++)
+                {
+                    m3.mat[i][j] += m1.mat[i][k] * m2.mat[k][j];
+                }
+            }
         }
+        std::cout << "The product of the matrices is  => " << std::endl;
+        m3.printMatrix();
     }
-    std::cout << "The product of the matrices is  => " << std::endl;
-    m3.printMatrix();
 }
 
 void Matrix::matrix_transpose(void)
