@@ -122,7 +122,7 @@ int main()
             s->displayArea();
             break;
         case 5:
-            std::cout << "Thank you forr using the program." << std::endl;
+            std::cout << "Thank you for the using the program." << std::endl;
             continueLoop = false;
             break;
         default:
