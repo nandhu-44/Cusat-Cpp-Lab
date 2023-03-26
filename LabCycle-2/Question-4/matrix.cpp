@@ -1,6 +1,5 @@
 #include <iostream>
-
-// Write a c++ program for developing a matrix class which can handle matrices of different dimensions. Also overload the operators for addition and multiplication of matrices. Use int pointers in your program to dynamically allocate memory for the matrices.
+#include <iomanip>
 
 class Matrix
 {
@@ -50,20 +49,16 @@ void Matrix::getMatrix()
 
 void Matrix::displayMatrix()
 {
+    int width = 3;
     std::cout << std::endl;
-    for (int i = 0; i <= row - 1; i++)
+    for (int i = 0; i < row; i++)
     {
-        std::cout << "│"
-                  << "\t";
+        std::cout << "│";
         for (int j = 0; j < col; j++)
         {
-            std::cout << mat[i][j] << "\t";
+            std::cout << std::setw(width) << mat[i][j] << " ";
         }
-        std::cout << "│";
-        if (i != row - 1)
-        {
-            std::cout << std::endl;
-        }
+        std::cout << std::setw(width) << "│" << std::endl;
     }
     std::cout << std::endl;
 }
