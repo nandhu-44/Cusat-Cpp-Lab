@@ -69,9 +69,9 @@ class Ellipse : public Shape
 public:
     void getData()
     {
-        std::cout << "Enter the lenght of major axis of the ellipse : ";
+        std::cout << "Enter the length of major axis of the ellipse : ";
         std::cin >> majorAxis;
-        std::cout << "Enter the lenght of minor axis of the ellipse : ";
+        std::cout << "Enter the length of minor axis of the ellipse : ";
         std::cin >> minorAxis;
     }
     void displayArea()
