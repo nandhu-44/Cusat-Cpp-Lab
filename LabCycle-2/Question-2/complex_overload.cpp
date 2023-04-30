@@ -106,7 +106,6 @@ int main()
             c3 = c1 + c2;
             std::cout << "The sum of the complex numbers is : ";
             c3.display();
-            std::cout << std::endl;
             break;
         case 3:
             if (!assigned)
@@ -117,7 +116,6 @@ int main()
             c3 = c1 * c2;
             std::cout << "The product of the complex numbers is : ";
             c3.display();
-            std::cout << std::endl;
             break;
         case 4:
             std::cout << "Thank you for using the program." << std::endl;
